@@ -10,6 +10,8 @@ public class EstructuraDatosPi {
 
    //Hola Dios los bendiga
     public static void main(String[] args) {
+        
+      System.out.println ("Hola mundo");   
      
     }
     
