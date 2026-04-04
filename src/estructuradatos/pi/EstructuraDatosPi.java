@@ -74,6 +74,11 @@ public class EstructuraDatosPi {
                         break;
                         
                 case 3:
+                    if (contador > 0) {
+                    System.out.println("Generando archivo de texto...");
+                    EXParchivo();
+                } else {
+                    System.out.println("No hay datos para exportar. Registra alguien primero.");}
                         break;
                         
                 default:
@@ -128,5 +133,38 @@ public class EstructuraDatosPi {
         System.out.println (" ");
         }
     }//cierra metodo buscar contactos
+    
+    
+    // hagamos el ultimo metodo para exportar archivos
+    public static void EXParchivo (){
+        /*PrintWriter es una herramienta que te facilita escribir texto 
+        en un archivo, y escritor es simplemente el nombre que le pongo 
+        pa poder usarlo en el código; la palabra new 
+        le indica al programa que cree ese objeto en la memoria en ese momento, 
+        mientras que FileWriter es el que se encarga de escribir directamente 
+        en el archivo; "agenda_contactos.txt" es el archivo donde
+        se almacenará todo lo que escriba, y el valor true indica que el programa 
+        añadirá el contenido al final sin borrar lo anterior (si fuera false, 
+        eliminaría lo existente y empezaría desde cero)*/
+        
+        try (PrintWriter escritor = new PrintWriter(new FileWriter("agenda_contactos.txt",true))) {
+        
+        escritor.println("------- MI AGENDA -------"); // Escribe en el archivo
+        
+        // Recorremos los arreglos 
+        for (int i = 0; i < contador; i++) {
+            // Usamos 'escritor' en vez de 'System.out'
+         
+            escritor.println("Nombre: " + nombres[i] + " | Tel: " + tels[i] + " | Correo: " + correos[i]);
+        }
+        escritor.close();
+        // todo salio bien
+        System.out.println("El archivo se ha guardo en tu computadora.");
+
+    } catch (IOException e) { 
+        // Si el try falla
+        System.out.println("No pude guardar porque: " + e.getMessage());
+    }
+}// cierra metodo EXParchivo
     
 } //Cierra clase
