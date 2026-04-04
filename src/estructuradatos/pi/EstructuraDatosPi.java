@@ -66,7 +66,11 @@ public class EstructuraDatosPi {
                     } else {System.out.println ("Esta agenda telefonica esta llena");}
                         break;
                 case 2:
+                    System.out.print("Escribe el nombre o correo que desea buscar: ");
                     
+                    String criterio = sc.nextLine ();
+                    
+                        bucarContactos (criterio);
                         break;
                         
                 case 3:
@@ -88,12 +92,41 @@ public class EstructuraDatosPi {
     public static void registrarContactos (String nombre,String tel, String correo){
         if (contador < MAX){
         nombres [contador] = nombre;
-        correos [contador] = correo;
         tels [contador] = tel;
+        correos [contador] = correo;
+        
         
             contador++;
             
         System.out.println ("El contacto ha sido guardado"); }
     }// cierra metodo registrarContactos
+    
+    //Metodos para buscar nombre o correo 
+    
+    public static void bucarContactos (String criterio){
+        boolean encontrado = false;
+        String busqueda = criterio.toLowerCase(); //pasaremos todo lo que el usuario escribio en minusculas
+        
+        System.out.println (" ");
+        System.out.println ("----- Buscando coincidencias, porfavor, espere un momento ----- ");
+        //revisamos si el nombre o el correo esta guardado 
+        for (int i = 0; i < contador; i++){
+        //Pasamos el nombre guardado a minúsculas SOLO para comparar
+            if (nombres[i].toLowerCase().contains(busqueda) || 
+                correos[i].toLowerCase().contains(busqueda)){
+        System.out.println ("-------- RESULTADOS --------");
+        System.out.println (" ");
+        System.out.println("Estos son los contactos que coinciden con"+ criterio +" :");       
+        System.out.println("Nombre: " + nombres[i] + " | Tel: " + tels[i] + " | Correo: " + correos[i]);    
+         encontrado = true; 
+            
+            }
+        }
+        System.out.println (" ");
+        if (!encontrado) {
+        System.out.println("No se encontro ningun contacto que coincida con: " + criterio);
+        System.out.println (" ");
+        }
+    }//cierra metodo buscar contactos
     
 } //Cierra clase
