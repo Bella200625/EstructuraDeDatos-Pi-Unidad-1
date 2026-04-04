@@ -155,7 +155,7 @@ public class EstructuraDatosPi {
         for (int i = 0; i < contador; i++) {
             // Usamos 'escritor' en vez de 'System.out'
          
-            escritor.println("Nombre: " + nombres[i] + " | Tel: " + tels[i] + " | Correo: " + correos[i]);
+            escritor.println("- " + nombres[i] + " | " + tels[i] + " | " + correos[i]);
         }
         escritor.close();
         // todo salio bien
